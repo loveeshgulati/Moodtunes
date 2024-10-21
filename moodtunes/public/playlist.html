@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Playlist</title>
+    <link rel="stylesheet" href="/my_playlist_style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+</head>
+<body>
+
+<h1>Your Playlist</h1>
+
+<div class="song-grid" id="playlist"></div>
+
+<div class="music-player">
+    <button id="prevBtn"><i class="ri-skip-back-fill"></i></button>
+    <button id="playPauseBtn">Play</button>
+    <button id="nextBtn"><i class="ri-skip-right-fill"></i></button>
+    <input type="range" id="progressBar" value="0" max="100">
+    <span id="currentTime">0:00</span> / <span id="durationTime">0:00</span>
+
+    <!-- Song Name -->
+    <span id="songTitle" class="song-title" style="font-size: 1.8em;">Song Title</span>
+</div>
+
+<script>
+window.onload = function () {
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const progressBar = document.getElementById("progressBar");
+    const currentTimeSpan = document.getElementById("currentTime");
+    const durationTimeSpan = document.getElementById("durationTime");
+    const songTitle = document.getElementById("songTitle");
+
+    const audio = new Audio();
+    let playlist = JSON.parse(localStorage.getItem('playedPlaylist')) || [];
+    let currentTrack = 0;
+
+    loadPlaylist();
+    loadTrack(currentTrack);
+
+    function loadPlaylist() {
+        let playlistContainer = document.getElementById('playlist');
+        playlistContainer.innerHTML = '';  // Clear any previous content
+
+        playlist.forEach((song, index) => {
+            let songCard = document.createElement('div');
+            songCard.className = 'song-card';
+            songCard.setAttribute('data-index', index);
+
+            let songCircle = document.createElement('div');
+            songCircle.className = 'song-circle';
+
+            let img = document.createElement('img');
+            img.src = song.image;
+
+            let name = document.createElement('h3');
+            name.innerText = song.name;
+
+            songCircle.appendChild(img);
+            songCard.appendChild(songCircle);
+            songCard.appendChild(name);
+            playlistContainer.appendChild(songCard);
+
+            // Add event listener to each card to play the corresponding song when clicked
+            songCard.addEventListener('click', () => {
+                currentTrack = index;
+                loadTrack(currentTrack);
+                audio.play();
+                playPauseBtn.textContent = 'Pause';
+            });
+        });
+    }
+
+    function loadTrack(trackIndex) {
+        const track = playlist[trackIndex];
+        audio.src = track.src;
+        audio.load();
+        songTitle.textContent = track.name;
+
+        audio.addEventListener('loadedmetadata', () => {
+            progressBar.value = 0;
+            durationTimeSpan.textContent = formatTime(audio.duration);
+        });
+
+        audio.addEventListener('error', () => {
+            console.error('Failed to load the audio file:', audio.src);
+        });
+    }
+
+    playPauseBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            playPauseBtn.textContent = 'Pause';
+        } else {
+            audio.pause();
+            playPauseBtn.textContent = 'Play';
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentTrack = (currentTrack + 1) % playlist.length;
+        loadTrack(currentTrack);
+        audio.play();
+        playPauseBtn.textContent = 'Pause';
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+        loadTrack(currentTrack);
+        audio.play();
+        playPauseBtn.textContent = 'Pause';
+    });
+
+    audio.addEventListener('timeupdate', () => {
+        progressBar.value = (audio.currentTime / audio.duration) * 100;
+        currentTimeSpan.textContent = formatTime(audio.currentTime);
+    });
+
+    progressBar.addEventListener('input', () => {
+        audio.currentTime = (progressBar.value / 100) * audio.duration;
+    });
+
+    audio.addEventListener('ended', () => {
+        currentTrack = (currentTrack + 1) % playlist.length;
+        loadTrack(currentTrack);
+        audio.play();
+        playPauseBtn.textContent = 'Pause';
+    });
+
+    function formatTime(seconds) {
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return `${min}:${sec < 10 ? '0' + sec : sec}`;
+    }
+}
+</script>
+
+</body>
+</html>

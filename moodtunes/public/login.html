@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <form class="login-form" method="post" action="login">
+            <h1>Log In</h1>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" required placeholder="Email or username" name="email">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password"required placeholder="Password" name="password"> 
+                    <i id="togglePassword" class="eye-icon">&#x1F441;</i>
+                </div>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+            <div class="extra-links">
+                <a href="forget_pass.html">Forgot your password?</a>
+                <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            </div>
+        </form>
+    </div>
+    <!-- <script src="/login.js"></script> -->
+</body>
+</html>

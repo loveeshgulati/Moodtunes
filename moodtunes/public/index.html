@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodTunes</title>
+    <link rel="stylesheet" href="/style.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+</head>
+<body>
+    <div class="content container">
+        <div class="top">
+            <div class="moodtune">
+                <h1 class="moodtune_heading">MoodTunes</h1>
+            </div>
+            <div class="btndiv">
+                <a href="signup.html"> <button class="btn" id="registerLoginBtn">Register/Login</button></a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="left">
+                <nav>
+                    <a href="#" class="nav-item">Listen Now</a>
+                    <a href="/love.html" class="nav-item">Love</a>
+                    <a href="/happy.html" class="nav-item">Happy</a>
+                    <a href="/playlist.html" class="nav-item">Playlists</a>
+                    <a href="#" class="nav-item">Mood Selector</a>
+                </nav>
+                <div class="mood-detection">
+                    <h3>Mood-Based Song Detection</h3>
+                    <p>Let us detect your mood and suggest the perfect playlist!</p>
+                    <!-- <button class="camera-button">Open Camera</button> -->
+
+                    <button class="camera-button"><u>Open Camera</u></button>
+                    <div id="camera-container" style="display: none;">
+                        <video id="camera-video" autoplay></video>
+                        <button id="close-camera">X</button>
+                        <button id="capture-frame">Capture Frame</button>
+                    </div>
+                    <br>
+                    <br>
+                    <p id="emotion-result">Detected Emotion: None</p>
+                </div>
+            </div>
+            
+            <div class="main">
+                <div class="section">
+                    <h2>Featured Playlists</h2>
+                    <div class="song-grid">
+                        <div class="song-card">
+                            <div class="song-circle">
+                                <img src="https://images.unsplash.com/photo-1577695184496-f87ebc9b6072?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c3VtbWVyJTIwdmliZXN8ZW58MHx8MHx8fDA%3D" alt="Playlist 1">
+                            </div>
+                            <h3>Summer Vibes</h3>
+                            <p>Various Artists</p>
+                        </div>
+                        <div class="song-card">
+                            <div class="song-circle">
+                                <img src="https://images.unsplash.com/photo-1630713815198-17ff8a8a7103?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2hpbGwlMjBiZWF0c3xlbnwwfHwwfHx8MA%3D%3D" alt="Playlist 2">
+                            </div>
+                            <h3>Chill Beats</h3>
+                            <p>Lo-Fi Collective</p>
+                        </div>
+                        <div class="song-card">
+                            <div class="song-circle">
+                                <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29ya291dCUyMG1peHxlbnwwfHwwfHx8MA%3D%3D" alt="Playlist 3">
+                            </div>
+                            <h3>Workout Mix</h3>
+                            <p>Fitness Jams</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>New Releases</h2>
+                    <div class="song-grid">
+                        <div class="song-card">
+                            <div class="song-square">
+                                <img src="https://images.unsplash.com/photo-1518351004844-2eae75c25577?q=80&w=2236&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Album 1">
+                            </div>
+                            <h3>Neon Dreams</h3>
+                            <p>Synthwave Band</p>
+                        </div>
+                        <div class="song-card">
+                            <div class="song-square">
+                                <img src="https://images.unsplash.com/photo-1594937391335-e25ef9b03186?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGFjb3VzdGljJTIwc2Vzc2lvbnN8ZW58MHx8MHx8fDA%3D" alt="Album 2">
+                            </div>
+                            <h3>Acoustic Sessions</h3>
+                            <p>Indie Collective</p>
+                        </div>
+                        <div class="song-card">
+                            <div class="song-square">
+                                <img src="https://images.unsplash.com/photo-1533464826937-8876cc53ab92?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fGVsZWN0cmljJTIwcHVsc2UlMjBzb25nfGVufDB8fDB8fHww" alt="Album 3">
+                            </div>
+                            <h3>Electric Pulse</h3>
+                            <p>EDM Masters</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>Your Top Mixes</h2>
+                    <div class="song-grid">
+                        <div class="song-card">
+                            <div class="song-circle">
+                                <img src="https://plus.unsplash.com/premium_photo-1675033559019-ca61c6e909df?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cG9wJTIwbWl4fGVufDB8fDB8fHww" alt="Mix 1">
+                            </div>
+                            <h3>Pop Mix</h3>
+                            <p>Based on your listening</p>
+                        </div>
+                        <div class="song-card">
+                            <div class="song-circle">
+                                <img src="https://media.istockphoto.com/id/183291608/photo/indie-rock-band-02.webp?a=1&b=1&s=612x612&w=0&k=20&c=8AGijD1a8tebfMPyI3gkXwbBsEKTRg_msfYBaIZD8n8=" alt="Mix 2">
+                            </div>
+                            <h3>Rock Classics</h3>
+                            <p>Your favorite hits</p>
+                        </div>
+                        <div class="song-card">
+                            <div class="song-circle">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSamnBdSch0xuijxnCsPv5dgL6MIWs0MA0lKw&s" alt="Mix 3">
+                            </div>
+                            <h3>Jazz Lounge</h3>
+                            <p>Smooth selections</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="music-player">
+            <button id="prevBtn"><i class="ri-skip-back-fill"></i></button>
+            <button id="playPauseBtn">Play</button>
+            <button id="nextBtn"><i class="ri-skip-right-fill"></i></button>
+            <input type="range" id="progressBar" value="0" max="100">
+            <span id="currentTime">0:00</span> / <span id="durationTime">0:00</span>
+
+              <!-- Song Name -->
+              <span id="songTitle" class="song-title" style="font-size: 1.8em;">Song Title</span>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <h2 class="pop_heading">How you feel</h2>
+        <button id="happy">Happy</button>
+        <button id="love">Love</button>
+        <button id="home">Home</button>
+    </div>
+    
+
+    
+
+    
+
+</body>
+<script src="../static/script.js"></script>
+</html>
